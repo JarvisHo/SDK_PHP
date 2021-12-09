@@ -1,5 +1,5 @@
 {
-    "name": "weedgood/ecpay-sdk",
+    "name": "jarvisho/ecpay-sdk",
     "description": "ECPay SDK",
     "type": "library",
     "require": {
