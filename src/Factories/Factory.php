@@ -2,6 +2,7 @@
 
 namespace Ecpay\Sdk\Factories;
 
+use Ecpay\Sdk\Services\JsonFormatService;
 use ReflectionClass;
 use Ecpay\Sdk\Request\Request;
 use Ecpay\Sdk\Request\AesRequest;
@@ -43,7 +44,6 @@ class Factory
      */
     public function create($class)
     {
-        $instance = null;
         switch (true) {
             case $this->isClassOrAlias($class, 'JsonCurlService'):
                 $instance = $this->create(CurlService::class);
@@ -93,6 +93,10 @@ class Factory
                 $checkMacValueRequest = $this->create(CheckMacValueRequest::class);
                 $htmlService = $this->create(HtmlService::class);
                 $instance = new AutoSubmitFormService($checkMacValueRequest, $htmlService);
+                break;
+            case $this->isClassOrAlias($class, 'JsonFormatService'):
+                $checkMacValueRequest = $this->create(CheckMacValueRequest::class);
+                $instance = new JsonFormatService($checkMacValueRequest);
                 break;
             // AES 應用
             case $this->isClassOrAlias($class, AesService::class):
